@@ -185,7 +185,7 @@ with col2:
 #     st.pyplot(visualize_secret(noisy_obf, "Noisy Obf"))
 
 with col3:
-    st.subheader(f"🔧 Noisy Obf ({NOISE_RATIO*100:.0f} % noise)")
+    st.subheader(f"🔧 Noisy Obf ({NOISE_RATIO*100:.0f}%)")
     st.code(noisy_obf)
     st.pyplot(visualize_noisy_diff(OBFUSC_SECRET, noisy_obf, "Noisy Obf – changed chars in red"))
 
