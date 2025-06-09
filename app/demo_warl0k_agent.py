@@ -140,8 +140,8 @@ json.dump({
 # 5️⃣  𝗦𝗶𝗱𝗲𝗯𝗮𝗿 — 𝘀𝘆𝘀𝘁𝗲𝗺 & 𝗺𝗼𝗱𝗲𝗹 𝘀𝘁𝗮𝘁𝘀
 # ---------------------------------------------------------------------------
 with st.sidebar:
-    st.image("signal-2025-05-07-170157.png",
-             width=280)  # replace with your local logo if needed
+    # st.image("signal-2025-05-07-170157.png",
+    #          width=280)  # replace with your local logo if needed
     st.markdown("## ⚙️ System")
     st.metric("CPU", f"{psutil.cpu_percent()} %")
     mem = psutil.virtual_memory()
