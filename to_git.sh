@@ -1,6 +1,6 @@
 #!/bin/bash
 git add .
-git commit -m "Initial WARL0K dashboard"
-git remote add origin git@github.com:dsaban/dsaban.git
+git commit -m "fix requirements.txt"
+git remote add origin https://github.com/dsaban/demo_dash_warl0k.git
 git push -u origin main
 
