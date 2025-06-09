@@ -1,0 +1,6 @@
+streamlit>=1.18
+torch==2.1.0+cpu   --index-url https://download.pytorch.org/whl/cpu
+matplotlib
+pandas
+numpy
+psutil

@@ -1,0 +1,7 @@
+{
+  "session_id": "yszmjx19",
+  "master_secret": "IFysCljr4Otqd7Bx",
+  "obfuscated_secret": "QTgYEGek9W34D2j4",
+  "model_master_path": "models/master_to_obf_yszmjx19.pt",
+  "model_obf_path": "models/obf_to_master_yszmjx19.pt"
+}
