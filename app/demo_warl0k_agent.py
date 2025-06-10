@@ -8,7 +8,7 @@ import torch
 import streamlit as st
 import matplotlib.pyplot as plt
 from model import train_secret_regenerator, evaluate_secret_regenerator   # <- your existing model utils
-
+import os, shutil, streamlit as st
 # ---------------------------------------------------------------------------
 # 0️⃣  𝗦𝗲𝘁-𝘂𝗽  &  U𝘁𝗶𝗹𝘀
 # ---------------------------------------------------------------------------
@@ -163,6 +163,34 @@ with st.sidebar:
     st.divider()
     if st.button("🔄  Start New Demo"):
         st.rerun()
+
+    # ---------------  SIDEBAR  ---------------
+    st.divider()
+    st.markdown("## 🗑️ Danger Zone")
+    
+    # STEP 1  –  “Erase ALL data”  ➜ sets a flag **erase_mode**
+    if st.button("Erase ALL data", key="erase_request"):
+        st.session_state["erase_mode"] = True     # Any name *not* equal to a widget key
+    
+    # STEP 2  –  Show confirm button only if flag is present
+    if st.session_state.get("erase_mode"):
+        st.warning("This will permanently delete **ALL** models, sessions and logs!")
+        if st.button("✅ Yes, erase", key="confirm_delete"):
+            # --- Delete folders ---
+            for d in ("models", "sessions"):
+                shutil.rmtree(d, ignore_errors=True)
+    
+            # --- Delete log / archive files ---
+            for f in ("archive_success.jsonl",
+                      "archive_failed.jsonl",
+                      "server_log.txt"):
+                if os.path.isfile(f):
+                    os.remove(f)
+    
+            st.success("All data erased. Reloading …")
+            # Clear flag then reload
+            st.session_state.pop("erase_mode", None)
+            st.rerun()
 
 # ---------------------------------------------------------------------------
 # 6️⃣  𝗠𝗮𝗶𝗻 — 𝟯-𝗰𝗼𝗹 𝗴𝗿𝗶𝗱 (master / clean obf / noisy obf)

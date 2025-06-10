@@ -1,7 +1,0 @@
-{
-  "session_id": "wb3ys29u",
-  "master_secret": "NLFe1WByHWBPfhtn",
-  "obfuscated_secret": "NAxZQ6MmNYHYaS8O",
-  "model_master_path": "models/master_to_obf_wb3ys29u.pt",
-  "model_obf_path": "models/obf_to_master_wb3ys29u.pt"
-}

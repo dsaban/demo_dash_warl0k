@@ -1,7 +1,0 @@
-{
-  "session_id": "xjtm5vad",
-  "master_secret": "TBfS2ujbngzwWpbJ",
-  "obfuscated_secret": "AwA1Ai6xUfXf4RPH",
-  "model_master_path": "models/master_to_obf_xjtm5vad.pt",
-  "model_obf_path": "models/obf_to_master_xjtm5vad.pt"
-}
