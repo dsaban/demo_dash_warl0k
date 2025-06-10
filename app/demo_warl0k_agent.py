@@ -110,7 +110,7 @@ st.title("🔐 WARL0K Micro-AI Agent Demo")
 st.caption(f"Session `{SESSION_ID}`")
 
 # --- Live training animation ----------------------------------------------
-EPOCHS_ANIM = 80
+EPOCHS_ANIM = 90
 fake_loss   = fake_loss_curve(EPOCHS_ANIM * 2)
 
 # 1️⃣  loss chart (create once via placeholder)
@@ -135,7 +135,7 @@ model_master_to_obf = train_secret_regenerator(
     secret_str     = OBFUSC_SECRET,
     input_override = MASTER_SECRET,
     vocab          = VOCAB,
-    epochs         = 50)
+    epochs         = EPOCHS_ANIM)
 
 # ---------------- phase 2  (fake animation) -----------------
 for ep in range(EPOCHS_ANIM):
@@ -149,7 +149,7 @@ model_obf_to_master = train_secret_regenerator(
     secret_str     = MASTER_SECRET,
     input_override = OBFUSC_SECRET,
     vocab          = VOCAB,
-    epochs         = 50)
+    epochs         = EPOCHS_ANIM)
 
 # clear bars when done
 ph_bar1.empty()
