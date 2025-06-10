@@ -110,7 +110,7 @@ st.title("🔐 WARL0K Micro-AI Agent Demo")
 st.caption(f"Session `{SESSION_ID}`")
 
 # --- Live training animation ----------------------------------------------
-EPOCHS_ANIM = 70
+EPOCHS_ANIM = 80
 fake_loss   = fake_loss_curve(EPOCHS_ANIM * 2)
 
 # 1️⃣  loss chart (create once via placeholder)
