@@ -1,7 +1,0 @@
-{
-  "session_id": "2qmlkal6",
-  "master_secret": "QbvgKOxwKXX8x2So",
-  "obfuscated_secret": "eEnGftDnaKd3FNql",
-  "model_master_path": "models/master_to_obf_2qmlkal6.pt",
-  "model_obf_path": "models/obf_to_master_2qmlkal6.pt"
-}

@@ -1,0 +1,7 @@
+{
+  "session_id": "osa9mcom",
+  "master_secret": "FlcCJD7dFiT5Ez5u",
+  "obfuscated_secret": "SsM96e7SzD4gCsg5",
+  "model_master_path": "models/master_to_obf_osa9mcom.pt",
+  "model_obf_path": "models/obf_to_master_osa9mcom.pt"
+}

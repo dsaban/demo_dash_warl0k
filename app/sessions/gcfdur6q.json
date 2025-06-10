@@ -1,0 +1,7 @@
+{
+  "session_id": "gcfdur6q",
+  "master_secret": "UMpBu0MMKd74Lhtf",
+  "obfuscated_secret": "yqIaLQmbwkYkC8Yg",
+  "model_master_path": "models/master_to_obf_gcfdur6q.pt",
+  "model_obf_path": "models/obf_to_master_gcfdur6q.pt"
+}
