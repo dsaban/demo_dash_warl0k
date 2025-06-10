@@ -1,0 +1,7 @@
+{
+  "session_id": "c90rtdsg",
+  "master_secret": "IlgUnFIRHfTEO4th",
+  "obfuscated_secret": "q9fItsRmpVbC65xf",
+  "model_master_path": "models/master_to_obf_c90rtdsg.pt",
+  "model_obf_path": "models/obf_to_master_c90rtdsg.pt"
+}

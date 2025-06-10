@@ -1,0 +1,7 @@
+{
+  "session_id": "g96470xk",
+  "master_secret": "sqc7wLuBzveGbrbG",
+  "obfuscated_secret": "naVAMrXpI4TFAFYv",
+  "model_master_path": "models/master_to_obf_g96470xk.pt",
+  "model_obf_path": "models/obf_to_master_g96470xk.pt"
+}

@@ -1,0 +1,7 @@
+{
+  "session_id": "onsiabdv",
+  "master_secret": "tEmef6uMEGOb2dfN",
+  "obfuscated_secret": "9QpTBSypkC889zVC",
+  "model_master_path": "models/master_to_obf_onsiabdv.pt",
+  "model_obf_path": "models/obf_to_master_onsiabdv.pt"
+}
