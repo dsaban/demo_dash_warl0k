@@ -1,7 +1,0 @@
-{
-  "session_id": "jtegp2us",
-  "master_secret": "4ibpI423sLVEawx1",
-  "obfuscated_secret": "1wNem0wKF4CWaq6A",
-  "model_master_path": "models/master_to_obf_jtegp2us.pt",
-  "model_obf_path": "models/obf_to_master_jtegp2us.pt"
-}
