@@ -1,0 +1,7 @@
+{
+  "session_id": "7ge0jeps",
+  "master_secret": "UAwhQA5SQQZq1Xxs",
+  "obfuscated_secret": "5J0KTShJUESldlQI",
+  "model_master_path": "models/master_to_obf_7ge0jeps.pt",
+  "model_obf_path": "models/obf_to_master_7ge0jeps.pt"
+}
