@@ -149,14 +149,14 @@ json.dump(session_json, open(f"sessions/{SESSION_ID}.json","w"), indent=2)
 noisy_obf = inject_noise(OBFUSC_SECRET, NOISE_RATIO, VOCAB)
 c1,c2,c3 = st.columns(3)
 with c1:
-	st.subheader("🎯 Master")
+	st.subheader("🎯 Master Secret")
 	st.code(MASTER_SECRET); st.pyplot(visualize_secret(MASTER_SECRET,"MASTER"))
 with c2:
-	st.subheader("🕵️ Obfuscated")
+	st.subheader("🕵️ Ephemeral Secret (obfuscated)")
 	st.code(OBFUSC_SECRET)
 	st.pyplot(visualize_secret(OBFUSC_SECRET,"OBF"))
 with c3:
-	st.subheader("🔧 Noisy (red=changed)"); st.code(noisy_obf)
+	st.subheader("🔧 Client Fingerprint"); st.code(noisy_obf)
 	st.pyplot(visualize_noisy_diff(OBFUSC_SECRET,noisy_obf,"Noisy diff"))
 
 # Reconstruction
