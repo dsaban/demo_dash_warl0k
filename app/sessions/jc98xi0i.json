@@ -1,0 +1,7 @@
+{
+  "session_id": "jc98xi0i",
+  "master_secret": "61VE6dJ2rqODVgZx",
+  "obfuscated_secret": "oqCmXW9tW89iQLam",
+  "model_master_path": "models/master_to_obf_jc98xi0i.pt",
+  "model_obf_path": "models/obf_to_master_jc98xi0i.pt"
+}

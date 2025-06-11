@@ -212,9 +212,16 @@ model_obf_to_master = train_secret_regenerator(
 pb1.empty(); pb2.empty(); st.success("✔ Training complete"); log("Training finished")
 
 # Save models & JSON
+# ensure folders exist
+os.makedirs("models", exist_ok=True)
+os.makedirs("sessions", exist_ok=True)
+
 master_path=f"models/master_to_obf_{SESSION_ID}.pt"
 obf_path   =f"models/obf_to_master_{SESSION_ID}.pt"
-torch.save(model_master_to_obf, master_path); torch.save(model_obf_to_master, obf_path)
+
+torch.save(model_master_to_obf, master_path)
+torch.save(model_obf_to_master, obf_path)
+# Save session metadata
 session_json = {"session_id":SESSION_ID,"master_secret":MASTER_SECRET,
 				"obfuscated_secret":OBFUSC_SECRET,
 				"model_master_path":master_path,"model_obf_path":obf_path}
