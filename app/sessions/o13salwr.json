@@ -1,7 +1,0 @@
-{
-  "session_id": "o13salwr",
-  "master_secret": "9qZtJUEwGxAN23NE",
-  "obfuscated_secret": "WkKZSFVV0sP1WpP0",
-  "model_master_path": "models/master_to_obf_o13salwr.pt",
-  "model_obf_path": "models/obf_to_master_o13salwr.pt"
-}

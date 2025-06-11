@@ -1,7 +1,0 @@
-{
-  "session_id": "8oppyqwp",
-  "master_secret": "dz9WOgMGVJ6aIvmQ",
-  "obfuscated_secret": "yb7aZY84kTRFk5mA",
-  "model_master_path": "models/master_to_obf_8oppyqwp.pt",
-  "model_obf_path": "models/obf_to_master_8oppyqwp.pt"
-}

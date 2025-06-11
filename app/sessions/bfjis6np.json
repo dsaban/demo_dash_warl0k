@@ -1,0 +1,7 @@
+{
+  "session_id": "bfjis6np",
+  "master_secret": "AzjojyWnpGwiQ5dF",
+  "obfuscated_secret": "tR6sNYgfdXM3QX0p",
+  "model_master_path": "models/master_to_obf_bfjis6np.pt",
+  "model_obf_path": "models/obf_to_master_bfjis6np.pt"
+}

@@ -1,7 +1,0 @@
-{
-  "session_id": "9n65sw1i",
-  "master_secret": "I5mQH7qEuIeP5DTv",
-  "obfuscated_secret": "fO69UENLhq2jYWHU",
-  "model_master_path": "models/master_to_obf_9n65sw1i.pt",
-  "model_obf_path": "models/obf_to_master_9n65sw1i.pt"
-}

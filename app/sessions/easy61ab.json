@@ -1,0 +1,7 @@
+{
+  "session_id": "easy61ab",
+  "master_secret": "OdR6w1LH71ka1Ubt",
+  "obfuscated_secret": "KKBsPv2g47xD7Sv4",
+  "model_master_path": "models/master_to_obf_easy61ab.pt",
+  "model_obf_path": "models/obf_to_master_easy61ab.pt"
+}

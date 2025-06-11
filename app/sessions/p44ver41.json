@@ -1,7 +1,0 @@
-{
-  "session_id": "p44ver41",
-  "master_secret": "vAXjheMxWc8cozv0",
-  "obfuscated_secret": "ELi9I585td9LuSb7",
-  "model_master_path": "models/master_to_obf_p44ver41.pt",
-  "model_obf_path": "models/obf_to_master_p44ver41.pt"
-}

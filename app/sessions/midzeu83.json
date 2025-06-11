@@ -1,0 +1,7 @@
+{
+  "session_id": "midzeu83",
+  "master_secret": "CfprlpkVIXE62ts1",
+  "obfuscated_secret": "LfdtI00dkh7qWxSN",
+  "model_master_path": "models/master_to_obf_midzeu83.pt",
+  "model_obf_path": "models/obf_to_master_midzeu83.pt"
+}

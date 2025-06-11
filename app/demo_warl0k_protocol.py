@@ -265,11 +265,14 @@ with st.expander("🪵 Runtime Log"): st.write("\n".join(st.session_state.logs))
 # 5️⃣  Model Manager tab
 # -----------------------------------------------------------------
 tab_demo, tab_mgr = st.tabs(["📊 Demo Output", "🗂 Model Manager"])
-with tab_demo: st.subheader("📄 Session Metadata"); st.json(session_json)
+
+with tab_demo:
+	st.subheader("📄 Session Metadata")
+	st.json(session_json)
 
 with tab_mgr:
 	st.header("🗂 Stored Models")
-	files = sorted(f for f in os.listdir("../models") if f.startswith("master_to_obf"))
+	files = sorted(f for f in os.listdir("models") if f.startswith("master_to_obf"))
 	if not files: st.info("No models yet.")
 	for f in files:
 		sid = f.split("_")[-1].split(".")[0]
