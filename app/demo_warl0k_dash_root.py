@@ -72,18 +72,22 @@ if run:
 		# mini-histograms
 		st.divider(); st.subheader("Obf ↔ Noisy view")
 		h1,h2, h3, h4 = st.columns(4)
-		
+		#  set secret title per histogram
 		h2.caption("Obfuscated")
+		h2.caption(OBF)
 		h2.pyplot(hist(OBF,"orange"), use_container_width=True)
-		
+	
 		h3.caption("Noisy")
+		h3.caption(NOISY)
 		h3.pyplot(hist(NOISY,"red"), use_container_width=True)
 		
 		h1.caption("Master")
+		h1.caption(MASTER)
 		h1.pyplot(hist(MASTER,"steelblue"), use_container_width=True)
 		
 		# seeded noise
 		h4.caption("Seeded noise")
+		h4.caption(inject_noise(OBF,NOISE_R,VOCAB,seed))
 		h4.pyplot(hist(inject_noise(OBF,NOISE_R,VOCAB,seed),"green"), use_container_width=True)
 		
 
@@ -96,6 +100,7 @@ if run:
 		ok_payload = f"session_id::{SID}" in aes_dec(regen.encode()[:16],pay_n,pay_ct).decode()
 	except Exception: ok_payload=False
 	tin=torch.tensor([[VOCAB.index(c)] for c in OBF])
+	is_ok_master = evaluate_secret_regenerator(model_O2M, tin, VOCAB)
 	ok_master = evaluate_secret_regenerator(model_O2M,tin,VOCAB)==MASTER
 	auth_ok   = ok_noise and ok_payload and ok_master
 
@@ -116,6 +121,7 @@ if run:
 			f"noise match              : {ok_noise}",
 			f"payload decrypt ok       : {ok_payload}",
 			f"master recon ok          : {ok_master}",
+			f"master recon (hex)       : {is_ok_master}",
 			f"AUTH PASSED              : {auth_ok}"
 		]
 		st.code("\n".join(lines))
