@@ -122,6 +122,8 @@ if run:
 			f"payload decrypt ok       : {ok_payload}",
 			f"master recon ok          : {ok_master}",
 			f"master recon (hex)       : {is_ok_master}",
+			"fingerprint (hex)       : " + regen.encode()[:16].hex(),
+			"-"*36,
 			f"AUTH PASSED              : {auth_ok}"
 		]
 		st.code("\n".join(lines))
