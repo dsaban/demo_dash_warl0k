@@ -142,7 +142,13 @@ else:
 			"epochs": epochs,
 			"model_path": m_path  # just the path
 		}
-		json.dump(meta, open(f"sessions/{sid}.json", "w"), indent=2)
+		# json.dump(meta, open(f"sessions/{sid}.json", "w"), indent=2)
+		sess_path = os.path.join("sessions", f"{sid}.json")
+		
+		# ✨ make sure sessions/ exists
+		os.makedirs(os.path.dirname(sess_path), exist_ok=True)
+		
+		json.dump(meta, open(sess_path, "w"), indent=2)
 	
 	
 	else:  # mode=="load"
