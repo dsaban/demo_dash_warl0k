@@ -1,6 +1,6 @@
 #!/bin/bash
 git add .
-git commit -m "fix call for session path: demo_warl0k_dash_root_main.py"
+git commit -m "fix call for session and models: added folder with data to demo_warl0k_dash_root_main.py"
 git remote add https://github.com/dsaban/demo_dash_warl0k.git
 git push -u
 
