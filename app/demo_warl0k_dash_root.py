@@ -26,7 +26,7 @@ cfg={**DEF,**json.load(open(CFG))} if os.path.isfile(CFG) else DEF
 with st.sidebar:
 	st.title("WARL0K Controls")
 	n_pct=st.slider("Noise (%)",0,100,cfg["noise"])
-	spd =st.radio("Speed",["⚡ Fast (30 ep)","🐢 Detailed (80 ep)"],
+	spd =st.radio("Speed",["⚡ Fast (60 ep)","🐢 Detailed (90 ep)"],
 				  0 if cfg["speed"].startswith("⚡") else 1)
 	if st.button("💾 Save & reload"):
 		json.dump({"noise":n_pct,"speed":spd},open(CFG,"w"),indent=2)
@@ -73,20 +73,20 @@ if run:
 		st.divider(); st.subheader("Obf ↔ Noisy view")
 		h1,h2, h3, h4 = st.columns(4)
 		#  set secret title per histogram
-		h2.caption("Obfuscated")
+		h2.caption(":orange[Master Obfuscated]")
 		h2.caption(OBF)
 		h2.pyplot(hist(OBF,"orange"), use_container_width=True)
 	
-		h3.caption("Noisy")
+		h3.caption(":red[Noisy Fingerprint]")
 		h3.caption(NOISY)
 		h3.pyplot(hist(NOISY,"red"), use_container_width=True)
 		
-		h1.caption("Master")
+		h1.caption(":blue[Master]")
 		h1.caption(MASTER)
 		h1.pyplot(hist(MASTER,"steelblue"), use_container_width=True)
 		
 		# seeded noise
-		h4.caption("Seeded noise")
+		h4.caption(":green[de-noise Fingerprint]")
 		h4.caption(inject_noise(OBF,NOISE_R,VOCAB,seed))
 		h4.pyplot(hist(inject_noise(OBF,NOISE_R,VOCAB,seed),"green"), use_container_width=True)
 		
