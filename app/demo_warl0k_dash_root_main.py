@@ -70,8 +70,11 @@ def load_session(sid: str):
 		st.warning(f"Session file '{sid}.json' no longer exists."); return None
 
 	meta = json.load(open(sess_path))
-	model_path = os.path.join(APP_DIR, meta["model_path"])  # make absolute
-
+	# model_path = os.path.join(APP_DIR, meta["model_path"])  # make absolute
+	model_path = os.path.join(APP_DIR,
+	                            meta.get("model_path",
+	                            os.path.join("models", f"obf_to_master_{sid}.pt")))
+	
 	if not os.path.isfile(model_path):
 		st.error(f"Model file missing: {model_path}")
 		st.stop()
@@ -141,9 +144,17 @@ else:
 			pb.empty(); st.success("Training done")
 
 			# 2 hists
-			h1,h2 = st.columns(2)
-			h1.caption("Obfuscated"); h1.pyplot(hist(obf,"orange"),use_container_width=True)
-			h2.caption("Noisy");      h2.pyplot(hist(noisy,"red"),use_container_width=True)
+			h1,h2,h3,h4 = st.columns(4)
+			h1.caption("Master")
+			h1.pyplot(hist(master, "blue"), use_container_width=True)
+			h2.caption("Obfuscated")
+			h2.pyplot(hist(obf,"orange"),use_container_width=True)
+			h3.caption("Noisy")
+			h3.pyplot(hist(noisy,"red"),use_container_width=True)
+			h4.caption("De-noised")
+			h4.pyplot(hist(inject_noise(obf,noise_r,vocab,seed),"green"),use_container_width=True)
+			
+			
 		
 		# ── after training finishes ─────────────────────────────
 		
