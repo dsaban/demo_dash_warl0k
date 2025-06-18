@@ -28,35 +28,56 @@ def hist(txt,color):
 	vals=[ord(c) for c in txt]; fig,ax=plt.subplots(figsize=(3.0,1.2))
 	ax.bar(range(len(txt)),vals,color=color,tick_label=list(txt)); ax.axis("off"); return fig
 
-def save_session(meta:dict, m_path:str, o_path:str):
-	json.dump(meta, open(os.path.join(APP_DIR,"sessions",f"{meta['sid']}.json"),"w"), indent=2)
-	torch.save(meta["model_O2M"], m_path)
+# def save_session(meta:dict, m_path:str, o_path:str):
+# 	json.dump(meta, open(os.path.join(APP_DIR,"sessions",f"{meta['sid']}.json"),"w"), indent=2)
+# 	torch.save(meta["model_O2M"], m_path)
 
-# def list_sessions() -> list[str]:
-# 	return sorted(p[:-5] for p in os.listdir("sessions") if p.endswith(".json"))
-#
-# # def load_session(sid:str):
-# # 	meta=json.load(open(os.path.join("sessions",f"{sid}.json")))
-# # 	meta["model_O2M"]=torch.load(meta["model_path"])
-# # 	return meta
-# def load_session(sid: str):
-# 	meta = json.load(open(os.path.join("sessions", f"{sid}.json")))
-# 	meta["model_O2M"] = torch.load(meta["model_path"])
-# 	return meta
+# ── session management ────────────────────────────────────────
 # helper section – replace the two defs
 def list_sessions() -> list[str]:
 	sess_dir = os.path.join(APP_DIR, "sessions")
 	os.makedirs(sess_dir, exist_ok=True)         # ✨ ensure it exists
 	return sorted(p[:-5] for p in os.listdir(sess_dir) if p.endswith(".json"))
 
+# def load_session(sid: str):
+# 	sess_dir = os.path.join(APP_DIR, "sessions")
+# 	os.makedirs(sess_dir, exist_ok=True)         # ✨ ensure it exists
+# 	meta = json.load(open(os.path.join(sess_dir, f"{sid}.json")))
+# 	meta["model_O2M"] = torch.load(meta["model_path"])
+# 	return meta
+
+# ── helper section  (replace previous defs) ────────────────────
+# APP_DIR = os.path.dirname(__file__) if "__file__" in globals() else "."
+
+def save_session(meta: dict, model: torch.nn.Module):
+	"""Persist JSON + model; writes paths relative to app root."""
+	sess_dir  = os.path.join(APP_DIR, "sessions")
+	model_dir = os.path.join(APP_DIR, "models")
+	os.makedirs(sess_dir,  exist_ok=True)
+	os.makedirs(model_dir, exist_ok=True)
+
+	model_path = os.path.join(model_dir, f"obf_to_master_{meta['sid']}.pt")
+	torch.save(model, model_path)
+
+	meta_out = {k: v for k, v in meta.items() if k != "model_O2M"}
+	meta_out["model_path"] = os.path.relpath(model_path, APP_DIR)
+	json.dump(meta_out, open(os.path.join(sess_dir, f"{meta['sid']}.json"), "w"), indent=2)
+
 def load_session(sid: str):
-	sess_dir = os.path.join(APP_DIR, "sessions")
-	os.makedirs(sess_dir, exist_ok=True)         # ✨ ensure it exists
-	meta = json.load(open(os.path.join(sess_dir, f"{sid}.json")))
-	meta["model_O2M"] = torch.load(meta["model_path"])
+	"""Return meta + loaded model; warn gracefully if file missing."""
+	sess_path  = os.path.join(APP_DIR, "sessions", f"{sid}.json")
+	if not os.path.isfile(sess_path):
+		st.warning(f"Session file '{sid}.json' no longer exists."); return None
+
+	meta = json.load(open(sess_path))
+	model_path = os.path.join(APP_DIR, meta["model_path"])  # make absolute
+
+	if not os.path.isfile(model_path):
+		st.error(f"Model file missing: {model_path}")
+		st.stop()
+
+	meta["model_O2M"] = torch.load(model_path, map_location="cpu")
 	return meta
-
-
 
 # ── sidebar persistent cfg ─────────────────────────────────────
 CFG="demo_cfg.json"; DEF={"noise":25,"speed":"⚡ Fast"}
@@ -133,15 +154,26 @@ else:
 		torch.save(model_O2M, m_path)
 		
 		# Build a JSON-friendly dict  (NO model objects inside!)
+		# meta = {
+		# 	"sid": sid,
+		# 	"master": master,
+		# 	"obf": obf,
+		# 	"noise_r": noise_r,
+		# 	"seed": seed,
+		# 	"epochs": epochs,
+		# 	"model_path": m_path  # just the path
+		# }
 		meta = {
 			"sid": sid,
 			"master": master,
 			"obf": obf,
 			"noise_r": noise_r,
 			"seed": seed,
-			"epochs": epochs,
-			"model_path": m_path  # just the path
+			"epochs": epochs
 		}
+		# save session meta
+		save_session(meta, model_O2M)  # ← handles JSON + model
+		
 		# json.dump(meta, open(f"sessions/{sid}.json", "w"), indent=2)
 		sess_path = os.path.join("sessions", f"{sid}.json")
 		
@@ -150,16 +182,24 @@ else:
 		
 		json.dump(meta, open(sess_path, "w"), indent=2)
 		
-		# save session meta
+		
 	
 	
 	else:  # mode=="load"
-		meta=load_session(sel_sid)
-		sid=meta["sid"]; master=meta["master"]; obf=meta["obf"]
-		noise_r=meta["noise_r"]; seed=meta["seed"]; epochs=meta["epochs"]
+		meta = load_session(sel_sid)
+		
+		sid=meta["sid"]
+		master=meta["master"]
+		obf=meta["obf"]
+		noise_r=meta["noise_r"]
+		seed=meta["seed"]
+		epochs=meta["epochs"]
 		vocab=list(string.ascii_letters+string.digits)
 		noisy=inject_noise(obf,noise_r,vocab,seed)
-		model_O2M=meta["model_O2M"]
+		
+		if meta is None: st.stop()  # file was missing, already warned
+		model_O2M = meta["model_O2M"]
+		
 
 		# re-assembly animation (RIGHT col)
 		with c_left:
