@@ -1,9 +1,0 @@
-{
-  "sid": "hy3i0l00",
-  "master": "CvEgrKU9gif9XNVv",
-  "obf": "6N048BAn6v9SWR7z",
-  "noise_r": 0.25,
-  "seed": 16074333500306282162,
-  "epochs": 90,
-  "model_path": "models/obf_to_master_hy3i0l00.pt"
-}

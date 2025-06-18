@@ -1,9 +1,0 @@
-{
-  "sid": "gx5ipsok",
-  "master": "7fBhX14iGM6z720a",
-  "obf": "MV5ZLtmZLe0BY3Lp",
-  "noise_r": 0.25,
-  "seed": 7953517369979995927,
-  "epochs": 90,
-  "model_path": "models/obf_to_master_gx5ipsok.pt"
-}

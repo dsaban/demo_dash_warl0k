@@ -1,9 +1,0 @@
-{
-  "sid": "hz0wy7m0",
-  "master": "DvF13VVhSVqvMInZ",
-  "obf": "3od4PC4jS9Ejo5b4",
-  "noise_r": 0.25,
-  "seed": 1525286179305903661,
-  "epochs": 90,
-  "model_path": "models/obf_to_master_hz0wy7m0.pt"
-}

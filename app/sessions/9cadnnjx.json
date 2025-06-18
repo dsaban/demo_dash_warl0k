@@ -1,9 +1,0 @@
-{
-  "sid": "9cadnnjx",
-  "master": "GduciS4ZmnD4DndY",
-  "obf": "2JDeZOepMMlhG9De",
-  "noise_r": 0.25,
-  "seed": 232340736521008211,
-  "epochs": 90,
-  "model_path": "models/obf_to_master_9cadnnjx.pt"
-}

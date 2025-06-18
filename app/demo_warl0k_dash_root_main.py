@@ -128,6 +128,8 @@ else:
 		
 		# Save the model file first
 		m_path = f"models/obf_to_master_{sid}.pt"
+		# ✨ make sure the directory exists
+		os.makedirs(os.path.dirname(m_path), exist_ok=True)
 		torch.save(model_O2M, m_path)
 		
 		# Build a JSON-friendly dict  (NO model objects inside!)

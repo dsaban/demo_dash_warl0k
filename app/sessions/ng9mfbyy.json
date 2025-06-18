@@ -1,9 +1,0 @@
-{
-  "sid": "ng9mfbyy",
-  "master": "ec2bwq7nb48mOb8Z",
-  "obf": "mvWk6jMHvL1pexAU",
-  "noise_r": 0.25,
-  "seed": 2522210830857557293,
-  "epochs": 90,
-  "model_path": "models/obf_to_master_ng9mfbyy.pt"
-}
