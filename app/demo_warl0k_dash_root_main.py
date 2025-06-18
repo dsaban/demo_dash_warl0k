@@ -28,10 +28,6 @@ def hist(txt,color):
 	vals=[ord(c) for c in txt]; fig,ax=plt.subplots(figsize=(3.0,1.2))
 	ax.bar(range(len(txt)),vals,color=color,tick_label=list(txt)); ax.axis("off"); return fig
 
-# def save_session(meta:dict, m_path:str, o_path:str):
-# 	json.dump(meta, open(os.path.join(APP_DIR,"sessions",f"{meta['sid']}.json"),"w"), indent=2)
-# 	torch.save(meta["model_O2M"], m_path)
-
 # ── session management ────────────────────────────────────────
 # helper section – replace the two defs
 def list_sessions() -> list[str]:
@@ -39,15 +35,7 @@ def list_sessions() -> list[str]:
 	os.makedirs(sess_dir, exist_ok=True)         # ✨ ensure it exists
 	return sorted(p[:-5] for p in os.listdir(sess_dir) if p.endswith(".json"))
 
-# def load_session(sid: str):
-# 	sess_dir = os.path.join(APP_DIR, "sessions")
-# 	os.makedirs(sess_dir, exist_ok=True)         # ✨ ensure it exists
-# 	meta = json.load(open(os.path.join(sess_dir, f"{sid}.json")))
-# 	meta["model_O2M"] = torch.load(meta["model_path"])
-# 	return meta
-
 # ── helper section  (replace previous defs) ────────────────────
-# APP_DIR = os.path.dirname(__file__) if "__file__" in globals() else "."
 
 def save_session(meta: dict, model: torch.nn.Module):
 	"""Persist JSON + model; writes paths relative to app root."""
@@ -164,16 +152,7 @@ else:
 		os.makedirs(os.path.dirname(m_path), exist_ok=True)
 		torch.save(model_O2M, m_path)
 		
-		# Build a JSON-friendly dict  (NO model objects inside!)
-		# meta = {
-		# 	"sid": sid,
-		# 	"master": master,
-		# 	"obf": obf,
-		# 	"noise_r": noise_r,
-		# 	"seed": seed,
-		# 	"epochs": epochs,
-		# 	"model_path": m_path  # just the path
-		# }
+		# save model path in meta
 		meta = {
 			"sid": sid,
 			"master": master,
@@ -193,9 +172,6 @@ else:
 		
 		json.dump(meta, open(sess_path, "w"), indent=2)
 		
-		
-	
-	
 	else:  # mode=="load"
 		meta = load_session(sel_sid)
 		
