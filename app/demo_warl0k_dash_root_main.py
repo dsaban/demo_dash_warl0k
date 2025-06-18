@@ -149,6 +149,8 @@ else:
 		os.makedirs(os.path.dirname(sess_path), exist_ok=True)
 		
 		json.dump(meta, open(sess_path, "w"), indent=2)
+		
+		# save session meta
 	
 	
 	else:  # mode=="load"
