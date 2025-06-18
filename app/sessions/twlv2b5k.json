@@ -1,0 +1,9 @@
+{
+  "sid": "twlv2b5k",
+  "master": "nNyeH6E2LrPBksN2",
+  "obf": "oNg2srUCSCK9rpVZ",
+  "noise_r": 0.25,
+  "seed": 3454128762883094540,
+  "epochs": 90,
+  "model_path": "models/obf_to_master_twlv2b5k.pt",
+  "model_O2M": 

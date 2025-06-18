@@ -1,0 +1,9 @@
+{
+  "sid": "2r3u9n4o",
+  "master": "MYUjF7GsXVUDTzO4",
+  "obf": "OjgfJaxP6cFlhmAp",
+  "noise_r": 0.25,
+  "seed": 18361479729677615238,
+  "epochs": 90,
+  "model_path": "models/obf_to_master_2r3u9n4o.pt"
+}
