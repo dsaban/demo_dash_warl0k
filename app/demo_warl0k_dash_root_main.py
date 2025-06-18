@@ -32,17 +32,30 @@ def save_session(meta:dict, m_path:str, o_path:str):
 	json.dump(meta, open(os.path.join(APP_DIR,"sessions",f"{meta['sid']}.json"),"w"), indent=2)
 	torch.save(meta["model_O2M"], m_path)
 
-def list_sessions() -> list[str]:
-	return sorted(p[:-5] for p in os.listdir("sessions") if p.endswith(".json"))
-
-# def load_session(sid:str):
-# 	meta=json.load(open(os.path.join("sessions",f"{sid}.json")))
-# 	meta["model_O2M"]=torch.load(meta["model_path"])
+# def list_sessions() -> list[str]:
+# 	return sorted(p[:-5] for p in os.listdir("sessions") if p.endswith(".json"))
+#
+# # def load_session(sid:str):
+# # 	meta=json.load(open(os.path.join("sessions",f"{sid}.json")))
+# # 	meta["model_O2M"]=torch.load(meta["model_path"])
+# # 	return meta
+# def load_session(sid: str):
+# 	meta = json.load(open(os.path.join("sessions", f"{sid}.json")))
+# 	meta["model_O2M"] = torch.load(meta["model_path"])
 # 	return meta
+# helper section – replace the two defs
+def list_sessions() -> list[str]:
+	sess_dir = os.path.join(APP_DIR, "sessions")
+	os.makedirs(sess_dir, exist_ok=True)         # ✨ ensure it exists
+	return sorted(p[:-5] for p in os.listdir(sess_dir) if p.endswith(".json"))
+
 def load_session(sid: str):
-	meta = json.load(open(os.path.join("sessions", f"{sid}.json")))
+	sess_dir = os.path.join(APP_DIR, "sessions")
+	os.makedirs(sess_dir, exist_ok=True)         # ✨ ensure it exists
+	meta = json.load(open(os.path.join(sess_dir, f"{sid}.json")))
 	meta["model_O2M"] = torch.load(meta["model_path"])
 	return meta
+
 
 
 # ── sidebar persistent cfg ─────────────────────────────────────

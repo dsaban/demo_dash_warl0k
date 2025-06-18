@@ -1,0 +1,9 @@
+{
+  "sid": "yu5k5b1r",
+  "master": "A4md5dU7XLhATqRu",
+  "obf": "PVhIlvZh4TA84NhK",
+  "noise_r": 0.25,
+  "seed": 2335848122654050856,
+  "epochs": 90,
+  "model_path": "models/obf_to_master_yu5k5b1r.pt"
+}
